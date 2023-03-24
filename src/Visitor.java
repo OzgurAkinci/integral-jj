@@ -1,7 +1,6 @@
 interface Visitor {
-  public Object visit(Exp e);
-  public Object visit(INT e);
-  public Object visit(List e);
-  public Object visit(Num e);
-  public Object visit(RNum e);
+  Object visit(Exp e);
+  Object visit(INT e);
+  Object visit(Num e);
+  Object visit(RNum e);
 }

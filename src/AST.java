@@ -1,27 +1,6 @@
-import java.util.ArrayList;
 
 abstract class Exp {
     public abstract Object accept(Visitor v);
-}
-
-
-class List extends Exp {
-    ArrayList<Object> e1 = new ArrayList<Object>();
-
-    public List(Exp[] a) {
-        //e1=a;
-        for (int i = 0; i < a.length; i++) {
-            e1.add(a[i]);
-        }
-    }
-
-    public String toString() {
-        return "List(" + e1 + ")";
-    }
-
-    public Object accept(Visitor v) {
-        return v.visit(this);
-    }
 }
 
 class PolynomialFunction extends Exp {
@@ -61,14 +40,14 @@ class PolynomialFunction extends Exp {
 }
 
 class Num extends Exp {
-    int sayi;
+    int number;
 
     public Num(int a) {
-        sayi = a;
+        number = a;
     }
 
     public String toString() {
-        return "Num(" + sayi + ")";
+        return "Num(" + number + ")";
     }
 
     public Object accept(Visitor v) {
@@ -77,15 +56,15 @@ class Num extends Exp {
 }
 
 class RNum extends Exp {
-    int sayi1, sayi2;
+    int number1, number2;
 
     public RNum(int a, int b) {
-        sayi1 = a;
-        sayi2 = b;
+        number1 = a;
+        number2 = b;
     }
 
     public String toString() {
-        return "RNum(" + sayi1 + "/" + sayi2 + ")";
+        return "RNum(" + number1 + "/" + number2 + ")";
     }
 
     public Object accept(Visitor v) {
