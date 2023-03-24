@@ -8,6 +8,10 @@ class EvalVisitor implements Visitor {
         return e.accept(this);
     }
 
+    public Object visit(INT e) {
+        return  e;
+    }
+
 
     public Object visit(List e) {
         size = e.e1.size();

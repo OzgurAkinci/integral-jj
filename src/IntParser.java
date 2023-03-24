@@ -6,47 +6,32 @@ public class IntParser implements IntParserConstants {
    public static void main(String[] args) throws ParseException {
        IntParser parser = new IntParser(System.in);
        EvalVisitor ev= new EvalVisitor();
-       System.out.println(ev.visit(parser.parse()));
+       System.out.println(ev.visit(parser.Start()));
      }
 
-  static final public Exp parse() throws ParseException {Token t; Exp e;
-    jj_consume_token(4);
-    t = jj_consume_token(INTEGER);
-    jj_consume_token(5);
-    jj_consume_token(IDENTIFIER);
-    jj_consume_token(6);
-    jj_consume_token(7);
-    e = elements(Integer.parseInt(t.image));
-    jj_consume_token(8);
-    jj_consume_token(0);
+  static final public Exp Start() throws ParseException {Exp e; Exp e2;
+    e2 = Assignment();
+    jj_consume_token(SEMICOLON);
+    e = Expression(e2);
+    jj_consume_token(SEMICOLON);
 {if ("" != null) return e;}
     throw new Error("Missing return statement in function");
   }
 
-  static final public Exp elements(int size) throws ParseException {Exp[] e1=new Exp[size]; int i=1;
-    e1[0] = Integer();
-    label_1:
-    while (true) {
-      switch ((jj_ntk==-1)?jj_ntk_f():jj_ntk) {
-      case 9:{
-        ;
-        break;
-        }
-      default:
-        jj_la1[0] = jj_gen;
-        break label_1;
-      }
-      jj_consume_token(9);
-      e1[i] = Integer();
-i=i+1;
-    }
-{if ("" != null) return  new List(e1);}
+  static final public Exp Assignment() throws ParseException {Token t;
+    jj_consume_token(IDENTIFIER);
+    jj_consume_token(EQUALS);
+    t = jj_consume_token(NUMBER);
+{if ("" != null) return new Num(Integer.parseInt(t.image));}
     throw new Error("Missing return statement in function");
   }
 
-  static final public Exp Integer() throws ParseException {Token t;
-    t = jj_consume_token(INTEGER);
-{if ("" != null) return new Num(Integer.parseInt(t.image));}
+  static final public Exp Expression(Exp e) throws ParseException {Exp e1=e;
+    jj_consume_token(INT);
+    jj_consume_token(L_PAREN);
+    jj_consume_token(IDENTIFIER);
+    jj_consume_token(R_PAREN);
+{{if ("" != null) return new INT(e1);}}
     throw new Error("Missing return statement in function");
   }
 
@@ -60,13 +45,13 @@ i=i+1;
   static public Token jj_nt;
   static private int jj_ntk;
   static private int jj_gen;
-  static final private int[] jj_la1 = new int[1];
+  static final private int[] jj_la1 = new int[0];
   static private int[] jj_la1_0;
   static {
       jj_la1_init_0();
    }
    private static void jj_la1_init_0() {
-      jj_la1_0 = new int[] {0x200,};
+      jj_la1_0 = new int[] {};
    }
 
   /** Constructor with InputStream. */
@@ -87,7 +72,6 @@ i=i+1;
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 1; i++) jj_la1[i] = -1;
   }
 
   /** Reinitialise. */
@@ -101,7 +85,7 @@ i=i+1;
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 1; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 0; i++) jj_la1[i] = -1;
   }
 
   /** Constructor. */
@@ -118,7 +102,6 @@ i=i+1;
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 1; i++) jj_la1[i] = -1;
   }
 
   /** Reinitialise. */
@@ -128,7 +111,6 @@ i=i+1;
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 1; i++) jj_la1[i] = -1;
   }
 
   /** Constructor with generated Token Manager. */
@@ -144,7 +126,6 @@ i=i+1;
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 1; i++) jj_la1[i] = -1;
   }
 
   /** Reinitialise. */
@@ -153,7 +134,6 @@ i=i+1;
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 1; i++) jj_la1[i] = -1;
   }
 
   static private Token jj_consume_token(int kind) throws ParseException {
@@ -204,12 +184,12 @@ i=i+1;
   /** Generate ParseException. */
   static public ParseException generateParseException() {
     jj_expentries.clear();
-    boolean[] la1tokens = new boolean[12];
+    boolean[] la1tokens = new boolean[10];
     if (jj_kind >= 0) {
       la1tokens[jj_kind] = true;
       jj_kind = -1;
     }
-    for (int i = 0; i < 1; i++) {
+    for (int i = 0; i < 0; i++) {
       if (jj_la1[i] == jj_gen) {
         for (int j = 0; j < 32; j++) {
           if ((jj_la1_0[i] & (1<<j)) != 0) {
@@ -218,7 +198,7 @@ i=i+1;
         }
       }
     }
-    for (int i = 0; i < 12; i++) {
+    for (int i = 0; i < 10; i++) {
       if (la1tokens[i]) {
         jj_expentry = new int[1];
         jj_expentry[0] = i;

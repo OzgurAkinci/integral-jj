@@ -9,9 +9,19 @@ public interface IntParserConstants {
   /** End of File. */
   int EOF = 0;
   /** RegularExpression Id. */
-  int IDENTIFIER = 10;
+  int IDENTIFIER = 3;
   /** RegularExpression Id. */
-  int INTEGER = 11;
+  int NUMBER = 4;
+  /** RegularExpression Id. */
+  int SEMICOLON = 5;
+  /** RegularExpression Id. */
+  int EQUALS = 6;
+  /** RegularExpression Id. */
+  int L_PAREN = 7;
+  /** RegularExpression Id. */
+  int R_PAREN = 8;
+  /** RegularExpression Id. */
+  int INT = 9;
 
   /** Lexical state. */
   int DEFAULT = 0;
@@ -21,15 +31,13 @@ public interface IntParserConstants {
     "<EOF>",
     "\" \"",
     "\"\\t\"",
-    "\"\\n\"",
-    "\"::\"",
+    "<IDENTIFIER>",
+    "<NUMBER>",
     "\";\"",
     "\"=\"",
-    "\"{\"",
-    "\"}\"",
-    "\",\"",
-    "<IDENTIFIER>",
-    "<INTEGER>",
+    "\"(\"",
+    "\")\"",
+    "\"INT\"",
   };
 
 }
