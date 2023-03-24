@@ -6,7 +6,7 @@ class EvalVisitor implements Visitor {
     }
 
     public Object visit(INT e) {
-        size = ((Num) e.e1).number;
+        size = ((Num) e.exp).number;
 
         System.out.println(new PolynomialFunction(size, AppConstant.PolynomialFunction));
         System.out.println(new PolynomialFunction(size, AppConstant.PolynomialIntFunction));

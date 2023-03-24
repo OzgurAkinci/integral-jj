@@ -3,6 +3,23 @@ abstract class Exp {
     public abstract Object accept(Visitor v);
 }
 
+class INT extends Exp {
+    Exp exp;
+
+    public INT(Exp e) {
+        exp = e;
+    }
+
+    public String toString() {
+        return "INT(" + exp + ")";
+    }
+
+    public Object accept(Visitor v) {
+        return v.visit(this);
+    }
+
+}
+
 class PolynomialFunction extends Exp {
     int size;
     String type;
