@@ -24,33 +24,44 @@ class List extends Exp {
     }
 }
 
-class IntegralJJ extends Exp {
-    Polynomial e1;
-
-    public IntegralJJ(Polynomial a) {
-        e1 = a;
-    }
-
-    public String toString() {
-        return "IntegralJJ(" + e1 + ")";
-    }
-
-    public Object accept(Visitor v) {
-        return v.visit(this);
-    }
-}
-
 class PolynomialFunction extends Exp {
+    int size;
     String type;
-    String e1;
 
-    public PolynomialFunction(String t, String a) {
-        type = t;
-        e1 = a;
+    public PolynomialFunction(int sizeParam, String typeParam) {
+        size = sizeParam;
+        type = typeParam;
     }
 
     public String toString() {
-        return (type.equals("poly") ? "PolynomialFunction=" : "PolynomialIntFunction= ") +  "(" + e1 + ")";
+
+        if(type.equals("PolynomialFunction")) {
+            // p(x) = cnx^n + ... + c3x^3 + c2x^2 + c1x + c0
+            StringBuilder poly = new StringBuilder();
+            for (int n = size-1 ; n > 0; n--) {
+                poly.append("x^").append(n);
+                if(n != 1) {
+                    poly.append("+");
+                }
+            }
+            //System.out.println(new PolynomialFunction("poly", poly.toString()));
+            return type + ": " + poly;
+        }else if (type.equals("PolynomialIntFunction")) {
+            // P(x) = (cnx^(n+1) / (n+1)) + .... + ((c3x^4) / 4) + ((c2x^3) / 3) + ((c1x^2) / 2) + (c0x)
+            StringBuilder polyInt = new StringBuilder();
+            for (int n = size-1 ; n > 0; n--) {
+                polyInt.append("(").append("(").append(n).append("x^").append(n+1).append(")").append("/").append(n+1).append(")");
+                if(n != 1) {
+                    polyInt.append("+");
+                }
+            }
+            return type + ": " + polyInt;
+        }else {
+            return null;
+        }
+
+
+        //return (type.equals("poly") ? "PolynomialFunction=" : "PolynomialIntFunction= ") +  "(" + e1 + ")";
     }
 
     public Object accept(Visitor v) {
