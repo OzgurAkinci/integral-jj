@@ -1,15 +1,22 @@
 class EvalVisitor implements Visitor {
-    int size;
+    int n;
 
     public Object visit(Exp e) {
         return e.accept(this);
     }
 
     public Object visit(INT e) {
-        size = ((Num) e.exp).number;
+        n = ((Num) e.exp).number;
+        System.out.println("n = " + n);
 
-        System.out.println(new PolynomialFunction(size, AppConstant.PolynomialFunction));
-        System.out.println(new PolynomialFunction(size, AppConstant.PolynomialIntFunction));
+        // polynomial functions
+        System.out.println(new PolynomialFunction(n, AppConstant.PolynomialFunction));
+        System.out.println(new PolynomialFunction(n, AppConstant.PolynomialIntFunction));
+
+        // pointers
+        AppConstant.calcPointers(n);
+
+
         return  e;
     }
 

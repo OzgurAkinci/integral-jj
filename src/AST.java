@@ -48,7 +48,7 @@ class PolynomialFunction extends Exp {
                 }
             }
         }
-        return type + ": " + poly;
+        return type + "= " + poly;
     }
 
     public Object accept(Visitor v) {
