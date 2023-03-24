@@ -4,5 +4,4 @@ interface Visitor {
   public Object visit(List e);
   public Object visit(Num e);
   public Object visit(RNum e);
-  public Object visit(PolynomialFunction e);
 }

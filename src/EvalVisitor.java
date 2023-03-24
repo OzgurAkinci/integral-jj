@@ -8,8 +8,8 @@ class EvalVisitor implements Visitor {
     public Object visit(INT e) {
         size = ((Num) e.e1).sayi;
 
-        System.out.println(new PolynomialFunction(size, "PolynomialFunction"));
-        System.out.println(new PolynomialFunction(size, "PolynomialIntFunction"));
+        System.out.println(new PolynomialFunction(size, AppConstant.PolynomialFunction));
+        System.out.println(new PolynomialFunction(size, AppConstant.PolynomialIntFunction));
         return  e;
     }
 
@@ -26,10 +26,4 @@ class EvalVisitor implements Visitor {
     public Object visit(RNum e) {
         return e;
     }
-
-    public Object visit(PolynomialFunction e) {
-        return e;
-    }
-
-
 }
