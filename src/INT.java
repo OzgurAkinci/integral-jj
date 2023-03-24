@@ -6,7 +6,6 @@ class INT extends Exp {
     }
 
     public String toString() {
-
         return "INT(" + e1 + ")";
     }
 
