@@ -9,12 +9,7 @@ class EvalVisitor implements Visitor {
     }
 
     public Object visit(INT e) {
-        return  e;
-    }
-
-
-    public Object visit(List e) {
-        size = e.e1.size();
+        size = ((Num) e.e1).sayi;
 
         // p(x) = cnx^n + ... + c3x^3 + c2x^2 + c1x + c0
         StringBuilder poly = new StringBuilder();
@@ -37,10 +32,12 @@ class EvalVisitor implements Visitor {
         System.out.println(new PolynomialFunction("polyInt", polyInt.toString()));
 
 
-        // FractionInt
-        Fraction f = Fraction.getInstance(1, 2);
-        System.out.println("Fraction: " + f);
+        return  e;
+    }
 
+
+    public Object visit(List e) {
+        size = e.e1.size();
         return e;
     }
 
