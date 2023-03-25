@@ -9,8 +9,8 @@ public final class AppConstant {
     }
 
     // Variables
-    public static final String PolynomialFunction = "Polynomial F.";
-    public static final String PolynomialIntFunction = "PolynomialInt F.";
+    public static final String PolynomialFunction = "p(x)";
+    public static final String PolynomialIntFunction = "P(x)";
 
     //Functions
     static String[] calcPointers (int n) {
@@ -32,7 +32,6 @@ public final class AppConstant {
             arr[i] = rightCounter == 1 ? "h" : (rightCounter == 0 ? "0" : (rightCounter + "h"));
             rightCounter--; i--;
         }
-        System.out.println("Pointers (y values..): " + Arrays.toString(arr));
         return arr;
     }
 
@@ -57,7 +56,7 @@ public final class AppConstant {
             coefficients.add(f);
         }
 
-        return new PolynomialDTO(poly.toString(), polyInt.toString(), coefficients);
+        return new PolynomialDTO(poly.toString(), polyInt.toString());
     }
 
     public static List<PolynomialExtraDTO> createHFunction(String poly, String[] arr) {
@@ -66,7 +65,7 @@ public final class AppConstant {
         for(int i=0; i<arr.length; i++) {
             PolynomialExtraDTO pgd = new PolynomialExtraDTO();
             pgd.setfName1("y" + i);
-            pgd.setfName2("P" + i + "(" + arr[i] + ")");
+            pgd.setfName2("p_" + "{" + i + "}" + "(" + arr[i] + ")");
             pgd.setFunc(poly);
             //pgd.setBuildFunc(Objects.equals(arr[i], "0") ? arr[i] : poly.replace("x", arr[i]));
             pgd.setBuildFunc(poly.replace("x", arr[i]));

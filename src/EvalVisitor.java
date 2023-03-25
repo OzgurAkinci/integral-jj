@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.List;
 
 class EvalVisitor implements Visitor {
@@ -8,19 +9,23 @@ class EvalVisitor implements Visitor {
     }
 
     public Object visit(INT e) {
+        // input
+        System.out.println("========================================================");
         n = ((Num) e.exp).number;
-        System.out.println("Input n = " + n);
+        System.out.println("n = " + n);
 
         // pointers
         System.out.println("========================================================");
         String[] arr = AppConstant.calcPointers(n+1);
+        System.out.println("h[] =  " + Arrays.toString(arr));
+
 
         // poly
         System.out.println("========================================================");
         PolynomialDTO polynomialDTO = AppConstant.getPolynomialDto(n);
         System.out.println(AppConstant.PolynomialFunction + " = "+ polynomialDTO.getPoly());
         System.out.println(AppConstant.PolynomialIntFunction + " = "+ polynomialDTO.getPolyInt());
-        System.out.println("Coefficients" + "= "+ polynomialDTO.getCoefficients());
+
 
         // poly
         System.out.println("========================================================");

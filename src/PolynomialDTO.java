@@ -3,14 +3,12 @@ import java.util.List;
 public class PolynomialDTO {
     private String poly;
     private String polyInt;
-    private List<Fraction> coefficients;
 
     public PolynomialDTO() {}
 
-    public PolynomialDTO(String poly, String polyInt, List<Fraction> coefficients) {
+    public PolynomialDTO(String poly, String polyInt) {
         this.poly = poly;
         this.polyInt = polyInt;
-        this.coefficients = coefficients;
     }
 
     public String getPoly() {
@@ -24,16 +22,7 @@ public class PolynomialDTO {
     public String getPolyInt() {
         return polyInt;
     }
-
     public void setPolyInt(String polyInt) {
         this.polyInt = polyInt;
-    }
-
-    public List<Fraction> getCoefficients() {
-        return coefficients;
-    }
-
-    public void setCoefficients(List<Fraction> coefficients) {
-        this.coefficients = coefficients;
     }
 }
