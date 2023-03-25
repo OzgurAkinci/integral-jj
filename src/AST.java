@@ -20,46 +20,6 @@ class INT extends Exp {
 
 }
 
-class PolynomialFunction extends Exp {
-    int size;
-    String type;
-
-    public PolynomialFunction(int sizeParam, String typeParam) {
-        size = sizeParam;
-        type = typeParam;
-    }
-
-    public String toString() {
-        StringBuilder poly = new StringBuilder();
-        if(type.equals(AppConstant.PolynomialFunction)) {
-            // p(x) = cnx^n + ... + c3x^3 + c2x^2 + c1x + c0
-            for (int n = size-1 ; n >= 0; n--) {
-                if(n != 0) {
-                    poly.append("x^").append(n);
-                    poly.append(" + ");
-                }else{
-                    poly.append("(").append("1").append(")");
-                }
-            }
-        }else if (type.equals(AppConstant.PolynomialIntFunction)) {
-            // P(x) = (cnx^(n+1) / (n+1)) + .... + ((c3x^4) / 4) + ((c2x^3) / 3) + ((c1x^2) / 2) + (c0x)
-            for (int n = size-1 ; n >= 0; n--) {
-                if(n != 0) {
-                    poly.append("(").append("(").append(n).append("x^").append(n+1).append(")").append("/").append(n+1).append(")");
-                    poly.append(" + ");
-                } else {
-                    poly.append("(").append("x").append(")");
-                }
-            }
-        }
-        return poly.toString();
-    }
-
-    public Object accept(Visitor v) {
-        return v.visit(this);
-    }
-}
-
 class Num extends Exp {
     int number;
 

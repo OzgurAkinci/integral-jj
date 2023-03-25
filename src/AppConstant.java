@@ -1,3 +1,5 @@
+import dto.PolynomialDto;
+
 import java.util.Arrays;
 
 public final class AppConstant {
@@ -32,5 +34,27 @@ public final class AppConstant {
         }
         System.out.println("Pointers (y values..): " + Arrays.toString(arr));
         return arr;
+    }
+
+    static PolynomialDto getPolynomialDto(int n) {
+        PolynomialDto dto = new PolynomialDto();
+        StringBuilder poly = new StringBuilder();
+        StringBuilder polyInt = new StringBuilder();
+        for (int i = n-1 ; i >= 0; i--) {
+            // p(x) = cnx^n + ... + c3x^3 + c2x^2 + c1x + c0
+            poly.append("x^").append(i);
+            if(i != 0) {
+                poly.append(" + ");
+            }
+            // P(x) = (cnx^(n+1) / (n+1)) + .... + ((c3x^4) / 4) + ((c2x^3) / 3) + ((c1x^2) / 2) + (c0x)
+            polyInt.append("(").append("(").append(i).append("x^").append(i+1).append(")").append("/").append(i+1).append(")");
+            if(i != 0) {
+                polyInt.append(" + ");
+            }
+        }
+        dto.setPoly(poly.toString());
+        dto.setPolyInt(polyInt.toString());
+        dto.setCoefficients(null);
+        return dto;
     }
 }
