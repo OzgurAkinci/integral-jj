@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 
 public final class AppConstant {
 
@@ -61,19 +60,19 @@ public final class AppConstant {
         return new PolynomialDTO(poly.toString(), polyInt.toString(), coefficients);
     }
 
-    public static List<PreGaussDto> createHFunction(String poly, String[] arr) {
-        List<PreGaussDto> pgdList = new ArrayList<>();
+    public static List<PolynomialExtraDTO> createHFunction(String poly, String[] arr) {
+        List<PolynomialExtraDTO> pdList = new ArrayList<>();
 
         for(int i=0; i<arr.length; i++) {
-            PreGaussDto pgd = new PreGaussDto();
+            PolynomialExtraDTO pgd = new PolynomialExtraDTO();
             pgd.setfName1("y" + i);
             pgd.setfName2("P" + i + "(" + arr[i] + ")");
             pgd.setFunc(poly);
             //pgd.setBuildFunc(Objects.equals(arr[i], "0") ? arr[i] : poly.replace("x", arr[i]));
             pgd.setBuildFunc(poly.replace("x", arr[i]));
-            pgdList.add(pgd);
+            pdList.add(pgd);
         }
 
-        return pgdList;
+        return pdList;
     }
 }

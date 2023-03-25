@@ -24,8 +24,8 @@ class EvalVisitor implements Visitor {
 
         // poly
         System.out.println("========================================================");
-        List<PreGaussDto> pgdList = AppConstant.createHFunction(polynomialDTO.getPolyInt(), arr);
-        pgdList.forEach(pgd -> System.out.println(pgd.getfName1() + " = " + pgd.getfName2() + " = " + pgd.getBuildFunc()));
+        List<PolynomialExtraDTO> pdList = AppConstant.createHFunction(polynomialDTO.getPolyInt(), arr);
+        pdList.forEach(pd -> System.out.println(pd.getfName1() + " = " + pd.getfName2() + " = " + pd.getBuildFunc()));
 
 
         System.out.println("========================================================");

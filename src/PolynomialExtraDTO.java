@@ -1,12 +1,12 @@
-public class PreGaussDto {
+public class PolynomialExtraDTO {
     private String fName1;
     private String fName2;
     private String func;
     private String buildFunc;
 
-    public PreGaussDto() {}
+    public PolynomialExtraDTO() {}
 
-    public PreGaussDto(String fName1, String fName2, String func, String buildFunc) {
+    public PolynomialExtraDTO(String fName1, String fName2, String func, String buildFunc) {
         this.fName1 = fName1;
         this.fName2 = fName2;
         this.func = func;
