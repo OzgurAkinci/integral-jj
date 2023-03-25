@@ -24,7 +24,7 @@ class EvalVisitor implements Visitor {
 
         // poly
         System.out.println("========================================================");
-        List<PolynomialExtraDTO> pdList = AppConstant.createHFunction(polynomialDTO.getPolyInt(), arr);
+        List<PolynomialExtraDTO> pdList = AppConstant.createHFunction(polynomialDTO.getPoly(), arr);
         pdList.forEach(pd -> System.out.println(pd.getfName1() + " = " + pd.getfName2() + " = " + pd.getBuildFunc()));
 
 
