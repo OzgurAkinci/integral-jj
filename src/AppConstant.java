@@ -1,6 +1,6 @@
-import dto.PolynomialDto;
-
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public final class AppConstant {
 
@@ -39,6 +39,8 @@ public final class AppConstant {
     static PolynomialDto getPolynomialDto(int n) {
         PolynomialDto dto = new PolynomialDto();
         StringBuilder poly = new StringBuilder();
+        List<Fraction> coefficients = new ArrayList<>();
+
         StringBuilder polyInt = new StringBuilder();
         for (int i = n-1 ; i >= 0; i--) {
             // p(x) = cnx^n + ... + c3x^3 + c2x^2 + c1x + c0
@@ -51,10 +53,13 @@ public final class AppConstant {
             if(i != 0) {
                 polyInt.append(" + ");
             }
+
+            Fraction f = Fraction.getInstance(i,i+1);
+            coefficients.add(f);
         }
         dto.setPoly(poly.toString());
         dto.setPolyInt(polyInt.toString());
-        dto.setCoefficients(null);
+        dto.setCoefficients(coefficients);
         return dto;
     }
 }

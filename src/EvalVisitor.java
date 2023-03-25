@@ -1,5 +1,3 @@
-import dto.PolynomialDto;
-
 class EvalVisitor implements Visitor {
     int n;
 
@@ -20,6 +18,9 @@ class EvalVisitor implements Visitor {
         PolynomialDto polynomialDto = AppConstant.getPolynomialDto(n);
         System.out.println(AppConstant.PolynomialFunction + "= "+ polynomialDto.getPoly());
         System.out.println(AppConstant.PolynomialIntFunction + "= "+ polynomialDto.getPolyInt());
+        System.out.println("Coefficients" + "= "+ polynomialDto.getCoefficients());
+
+
 
         /*
         // polynomial functions
