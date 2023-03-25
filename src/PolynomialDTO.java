@@ -1,13 +1,13 @@
 import java.util.List;
 
-public class PolynomialDto {
+public class PolynomialDTO {
     private String poly;
     private String polyInt;
     private List<Fraction> coefficients;
 
-    public PolynomialDto () {}
+    public PolynomialDTO() {}
 
-    public PolynomialDto (String poly, String polyInt, List<Fraction> coefficients) {
+    public PolynomialDTO(String poly, String polyInt, List<Fraction> coefficients) {
         this.poly = poly;
         this.polyInt = polyInt;
         this.coefficients = coefficients;

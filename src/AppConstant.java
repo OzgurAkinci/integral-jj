@@ -36,8 +36,7 @@ public final class AppConstant {
         return arr;
     }
 
-    static PolynomialDto getPolynomialDto(int n) {
-        PolynomialDto dto = new PolynomialDto();
+    static PolynomialDTO getPolynomialDto(int n) {
         StringBuilder poly = new StringBuilder();
         List<Fraction> coefficients = new ArrayList<>();
 
@@ -57,9 +56,7 @@ public final class AppConstant {
             Fraction f = Fraction.getInstance(i,i+1);
             coefficients.add(f);
         }
-        dto.setPoly(poly.toString());
-        dto.setPolyInt(polyInt.toString());
-        dto.setCoefficients(coefficients);
-        return dto;
+
+        return new PolynomialDTO(poly.toString(), polyInt.toString(), coefficients);
     }
 }
