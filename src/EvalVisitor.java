@@ -1,3 +1,5 @@
+import java.util.List;
+
 class EvalVisitor implements Visitor {
     int n;
 
@@ -11,24 +13,19 @@ class EvalVisitor implements Visitor {
 
         // pointers
         System.out.println("========================================================");
-        int[] arr = AppConstant.calcPointers(n);
+        String[] arr = AppConstant.calcPointers(n+1);
 
         // poly
         System.out.println("========================================================");
         PolynomialDTO polynomialDTO = AppConstant.getPolynomialDto(n);
-        System.out.println(AppConstant.PolynomialFunction + "= "+ polynomialDTO.getPoly());
-        System.out.println(AppConstant.PolynomialIntFunction + "= "+ polynomialDTO.getPolyInt());
-        System.out.println("Coefficients" + "= "+ polynomialDTO.getCoefficients());
+        System.out.println(AppConstant.PolynomialFunction + " = "+ polynomialDTO.getPoly());
+        System.out.println(AppConstant.PolynomialIntFunction + " = "+ polynomialDTO.getPolyInt());
+        //System.out.println("Coefficients" + "= "+ polynomialDTO.getCoefficients());
 
-
-
-        /*
+        // poly
         System.out.println("========================================================");
-        String negH = intPoly.replace("x", "-h");
-        String posH = intPoly.replace("x", "h");
-        String I = "[" + posH + "]" + "-" + "[" +  negH + "]";
-        System.out.println("I= "+ I);
-        */
+        List<PreGaussDto> pgdList = AppConstant.createHFunction(polynomialDTO.getPolyInt(), arr);
+        pgdList.forEach(pgd -> System.out.println(pgd.getfName1() + " = " + pgd.getfName2() + " = " + pgd.getBuildFunc()));
 
 
         System.out.println("========================================================");
