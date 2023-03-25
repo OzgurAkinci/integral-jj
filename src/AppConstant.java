@@ -30,7 +30,7 @@ public final class AppConstant {
             arr[i] = rightCounter;
             rightCounter--; i--;
         }
-        System.out.println("Pointers: " + Arrays.toString(arr));
+        System.out.println("Pointers (y values..): " + Arrays.toString(arr));
         return arr;
     }
 }
