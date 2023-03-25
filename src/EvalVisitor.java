@@ -20,7 +20,7 @@ class EvalVisitor implements Visitor {
         PolynomialDTO polynomialDTO = AppConstant.getPolynomialDto(n);
         System.out.println(AppConstant.PolynomialFunction + " = "+ polynomialDTO.getPoly());
         System.out.println(AppConstant.PolynomialIntFunction + " = "+ polynomialDTO.getPolyInt());
-        //System.out.println("Coefficients" + "= "+ polynomialDTO.getCoefficients());
+        System.out.println("Coefficients" + "= "+ polynomialDTO.getCoefficients());
 
         // poly
         System.out.println("========================================================");

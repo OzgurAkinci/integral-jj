@@ -53,7 +53,7 @@ public final class AppConstant {
                 polyInt.append(" + ");
             }
 
-            Fraction f = Fraction.getInstance(i,i+1);
+            Fraction f = Fraction.getInstance(1,i+1);
             coefficients.add(f);
         }
 
