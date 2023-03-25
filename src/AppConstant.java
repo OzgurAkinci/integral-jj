@@ -11,7 +11,7 @@ public final class AppConstant {
     public static final String PolynomialIntFunction = "PolynomialInt F.";
 
     //Functions
-    public static int[] calcPointers (int n) {
+    static int[] calcPointers (int n) {
         int mod = n % 2; // If n is even or odd
 
         int leftCounter = ((mod == 0) ? (((n/2)-1) * -1) : ((n/2) * -1));

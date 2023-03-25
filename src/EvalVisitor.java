@@ -7,16 +7,30 @@ class EvalVisitor implements Visitor {
 
     public Object visit(INT e) {
         n = ((Num) e.exp).number;
-        System.out.println("n = " + n);
+        System.out.println("Input n = " + n);
 
         // polynomial functions
-        System.out.println(new PolynomialFunction(n, AppConstant.PolynomialFunction));
-        System.out.println(new PolynomialFunction(n, AppConstant.PolynomialIntFunction));
+        System.out.println("========================================================");
+        String poly = new PolynomialFunction(n, AppConstant.PolynomialFunction).toString();
+        System.out.println(AppConstant.PolynomialFunction + "= "+ poly);
+        String intPoly = new PolynomialFunction(n, AppConstant.PolynomialIntFunction).toString();
+        System.out.println(AppConstant.PolynomialIntFunction + "= "+ intPoly);
 
         // pointers
-        AppConstant.calcPointers(n);
+        System.out.println("========================================================");
+        int[] arr = AppConstant.calcPointers(n);
+
+        System.out.println("========================================================");
+        String negH = intPoly.replace("x", "-h");
+        String posH = intPoly.replace("x", "h");
+        String I = "[" + posH + "]" + "-" + "[" +  negH + "]";
+        System.out.println("I= "+ I);
 
 
+
+
+
+        System.out.println("========================================================");
         return  e;
     }
 
