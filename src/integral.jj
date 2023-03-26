@@ -1,5 +1,5 @@
 options {
-    STATIC = true; // make parser methods non static
+    STATIC = false; // make parser methods non static
     DEBUG_PARSER = false;
     LOOKAHEAD = 1;
 }
@@ -27,21 +27,20 @@ TOKEN :
 }
 
 
-Exp Start() : {Exp e; Exp e2;  }
+Exp Start() : { Exp e; Exp e2; }
 {
     e2=Assignment() <SEMICOLON> e=Expression(e2) <SEMICOLON>
-	{return e;}
+	{ return e; }
 }
 
-Exp Assignment() :
-{Token t;}
+Exp Assignment() : { Token t; }
 {
-    <IDENTIFIER> <EQUALS> t=<NUMBER> {return new Num(Integer.parseInt(t.image));}
+    <IDENTIFIER> <EQUALS> t=<NUMBER>
+    { return new Num(Integer.parseInt(t.image)); }
 }
 
-Exp Expression(Exp e) : {
-	Exp e1=e;}
+Exp Expression(Exp e) : { Exp e1=e; }
 {
     <INT> <L_PAREN>  <IDENTIFIER>  <R_PAREN>
-	{{return new INT(e1);}}
+	{{ return new INT(e1); }}
 }
