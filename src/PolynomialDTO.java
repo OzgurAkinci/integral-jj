@@ -1,5 +1,3 @@
-import java.util.List;
-
 public class PolynomialDTO {
     private String poly;
     private String polyInt;

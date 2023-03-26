@@ -1,5 +1,6 @@
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 class EvalVisitor implements Visitor {
     int n;
@@ -16,9 +17,8 @@ class EvalVisitor implements Visitor {
 
         // pointers
         System.out.println("========================================================");
-        String[] arr = AppConstant.calcPointers(n+1);
-        System.out.println("h[] =  " + Arrays.toString(arr));
-
+        PointerDTO[] arr = AppConstant.calcPointers(n+1);
+        System.out.println("h = " + Arrays.stream(arr).toList().stream().map(PointerDTO::gethCoefficient).collect(Collectors.joining(",")));
 
         // poly
         System.out.println("========================================================");
@@ -27,10 +27,20 @@ class EvalVisitor implements Visitor {
         System.out.println(AppConstant.PolynomialIntFunction + " = "+ polynomialDTO.getPolyInt());
 
 
-        // poly
+        // h functions
         System.out.println("========================================================");
         List<PolynomialExtraDTO> pdList = AppConstant.createHFunction(polynomialDTO.getPoly(), arr);
-        pdList.forEach(pd -> System.out.println(pd.getfName1() + " = " + pd.getfName2() + " = " + pd.getBuildFunc()));
+        pdList.forEach(pd -> System.out.println(pd.getfName1() + " = " + pd.getBuildFunc()));
+
+
+        // coefficients
+        System.out.println("========================================================");
+        GaussEliminationInputDTO coefficients = AppConstant.createCoefficientAsGaussEliminationInputDTO(arr, n);
+
+        Fraction[] b = {Fraction.valueOf(1.0), Fraction.valueOf(1.0), Fraction.valueOf(1.0) , Fraction.valueOf(1.0)};
+        Fraction[] c = GaussElimination.solve(coefficients.getA(), b);
+        System.out.println("c_{0} = " + c[0] + ", c_{1} = " + c[1] + ", c_{2} = " + c[2]);
+
 
 
         System.out.println("========================================================");
