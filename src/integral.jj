@@ -4,8 +4,6 @@ options {
     LOOKAHEAD = 1;
 }
 PARSER_BEGIN(IntParser)
-import java.util.*;
-import java.io.InputStream;
 public class IntParser {
    public static void main(String[] args) throws ParseException {
        IntParser parser = new IntParser(System.in);
