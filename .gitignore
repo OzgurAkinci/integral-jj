@@ -7,3 +7,4 @@ out
 
 ### Generated Files###
 *.class
+*.bak
