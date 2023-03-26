@@ -76,7 +76,6 @@ public final class AppConstant {
     static GaussEliminationInputDTO createCoefficientAsGaussEliminationInputDTO(PointerDTO[] pointers, int n) {
         GaussEliminationInputDTO dto = new GaussEliminationInputDTO();
         Fraction[][] a = new Fraction[n + 1][pointers.length];
-        Fraction[] b = new Fraction[n];
         for(int i=0; i<pointers.length; i++) {
             int k = n;
             for(int j=0; j<=n; j++) {
@@ -85,7 +84,14 @@ public final class AppConstant {
             }
         }
         dto.setA(a);
+
+        String[] b = new String[n];
+        for(int i=0; i<n; i++) {
+            b[i] = "y"+i;
+        }
         dto.setB(b);
+
+
 
         for (int i = 0; i < a.length; i++) {
             System.out.print("y"+ i + " = \t");
