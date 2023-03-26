@@ -1,19 +1,19 @@
 public class GaussEliminationInputDTO {
-    private Fraction[][] A;
+    private String[][] A;
     private String[] b;
 
     public GaussEliminationInputDTO() {}
 
-    public GaussEliminationInputDTO(Fraction[][] a, String[] b) {
+    public GaussEliminationInputDTO(String[][] a, String[] b) {
         A = a;
         this.b = b;
     }
 
-    public Fraction[][] getA() {
+    public String[][] getA() {
         return A;
     }
 
-    public void setA(Fraction[][] a) {
+    public void setA(String[][] a) {
         A = a;
     }
 

@@ -41,7 +41,9 @@ class EvalVisitor implements Visitor {
         //Fraction[] c = GaussElimination.solve(coefficients.getA(), b);
         //System.out.println("c_{0} = " + c[0] + ", c_{1} = " + c[1] + ", c_{2} = " + c[2]);
 
-
+       // System.out.println("========================================================");
+        //String[] arrx = GaussElimination.solveSymbolicPolynomial(coefficients.getA(), coefficients.getB());
+        //System.out.println(Arrays.toString(arrx));
 
         System.out.println("========================================================");
         return  e;
