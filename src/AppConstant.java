@@ -88,6 +88,7 @@ public final class AppConstant {
         dto.setB(b);
 
         for (int i = 0; i < a.length; i++) {
+            System.out.print("y"+ i + " = \t");
             for (int j = 0; j < a[i].length; j++) {
                 System.out.print(a[i][j] + "\t");
             }

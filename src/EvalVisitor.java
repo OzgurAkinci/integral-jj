@@ -37,9 +37,9 @@ class EvalVisitor implements Visitor {
         System.out.println("========================================================");
         GaussEliminationInputDTO coefficients = AppConstant.createCoefficientAsGaussEliminationInputDTO(arr, n);
 
-        Fraction[] b = {Fraction.valueOf(1.0), Fraction.valueOf(1.0), Fraction.valueOf(1.0) , Fraction.valueOf(1.0)};
-        Fraction[] c = GaussElimination.solve(coefficients.getA(), b);
-        System.out.println("c_{0} = " + c[0] + ", c_{1} = " + c[1] + ", c_{2} = " + c[2]);
+        //Fraction[] b = {Fraction.valueOf(1.0), Fraction.valueOf(1.0), Fraction.valueOf(1.0) , Fraction.valueOf(1.0)};
+        //Fraction[] c = GaussElimination.solve(coefficients.getA(), b);
+        //System.out.println("c_{0} = " + c[0] + ", c_{1} = " + c[1] + ", c_{2} = " + c[2]);
 
 
 
