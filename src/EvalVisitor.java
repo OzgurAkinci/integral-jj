@@ -17,8 +17,8 @@ class EvalVisitor implements Visitor {
 
         // pointers
         System.out.println("========================================================");
-        PointerDTO[] arr = AppConstant.calcPointers(n+1);
-        System.out.println("h = " + Arrays.stream(arr).toList().stream().map(PointerDTO::gethCoefficient).collect(Collectors.joining(",")));
+        PointerDTO[] pointers = AppConstant.calcPointers(n+1);
+        System.out.println("h = " + Arrays.stream(pointers).toList().stream().map(PointerDTO::gethCoefficient).collect(Collectors.joining(",")));
 
         // poly
         System.out.println("========================================================");
@@ -29,10 +29,9 @@ class EvalVisitor implements Visitor {
 
         // h functions
         System.out.println("========================================================");
-        List<PolynomialExtraDTO> pdList = AppConstant.createHFunction(polynomialDTO.getPoly(), arr);
-        pdList.forEach(pd -> System.out.println(pd.getfName1() + " = " + pd.getBuildFunc()));
+        String[][] initMatrix = AppConstant.initMatrix(pointers, n);
 
-
+        /*
         // coefficients
         System.out.println("========================================================");
         GaussEliminationInputDTO coefficients = AppConstant.createCoefficientAsGaussEliminationInputDTO(arr, n);
@@ -40,11 +39,7 @@ class EvalVisitor implements Visitor {
         //Fraction[] b = {Fraction.valueOf(1.0), Fraction.valueOf(1.0), Fraction.valueOf(1.0) , Fraction.valueOf(1.0)};
         //Fraction[] c = GaussElimination.solve(coefficients.getA(), b);
         //System.out.println("c_{0} = " + c[0] + ", c_{1} = " + c[1] + ", c_{2} = " + c[2]);
-
-       // System.out.println("========================================================");
-        //String[] arrx = GaussElimination.solveSymbolicPolynomial(coefficients.getA(), coefficients.getB());
-        //System.out.println(Arrays.toString(arrx));
-
+        */
         System.out.println("========================================================");
         return  e;
     }

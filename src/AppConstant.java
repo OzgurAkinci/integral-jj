@@ -39,15 +39,15 @@ public final class AppConstant {
         List<Fraction> coefficients = new ArrayList<>();
 
         StringBuilder polyInt = new StringBuilder();
-        for (int i = n ; i >= 0; i--) {
+        for (int i = 0 ; i <= n; i++) {
             // p(x) = cnx^n + ... + c3x^3 + c2x^2 + c1x + c0
             poly.append("c_").append("{").append(i).append("}").append("x^").append(i);
-            if(i != 0) {
+            if(i != n) {
                 poly.append(" + ");
             }
             // P(x) = (cnx^(n+1) / (n+1)) + .... + ((c3x^4) / 4) + ((c2x^3) / 3) + ((c1x^2) / 2) + (c0x)
             polyInt.append("(").append("(").append("c_").append("{").append(i).append("}").append(")").append("x^").append(i+1).append(")").append("/").append(i+1);
-            if(i != 0) {
+            if(i != n) {
                 polyInt.append(" + ");
             }
 
@@ -58,49 +58,54 @@ public final class AppConstant {
         return new PolynomialDTO(poly.toString(), polyInt.toString());
     }
 
-    static List<PolynomialExtraDTO> createHFunction(String poly, PointerDTO[] arr) {
-        List<PolynomialExtraDTO> pdList = new ArrayList<>();
 
-        for(int i=0; i<arr.length; i++) {
-            PolynomialExtraDTO pgd = new PolynomialExtraDTO();
-            pgd.setfName1("y" + i);
-            pgd.setfName2("p_" + "{" + i + "}" + "(" + arr[i] + ")");
-            pgd.setFunc(poly);
-            pgd.setBuildFunc(poly.replace("x", arr[i].gethCoefficient()));
-            pdList.add(pgd);
-        }
+    public static String[][] initMatrix (PointerDTO[] pointers, int n) {
+        String[][] matrix = new String[n+1][n+2];
 
-        return pdList;
-    }
-
-    static GaussEliminationInputDTO createCoefficientAsGaussEliminationInputDTO(PointerDTO[] pointers, int n) {
-        GaussEliminationInputDTO dto = new GaussEliminationInputDTO();
-        String[][] a = new String[n + 1][pointers.length];
         for(int i=0; i<pointers.length; i++) {
-            int k = n;
             for(int j=0; j<=n; j++) {
-                a[i][j] = pointers[i].getCoefficient() == 0 ? "0" : ((int) Math.pow(pointers[i].getCoefficient(), k) + "h^" + k);
-                k--;
+                PointerDTO pointer = pointers[i];
+                int coefficient = pointer.getCoefficient();
+                String element = (coefficient == 0 && j == 0) ? ("c{" + pointers[i].getCoefficient() + "}") : h(coefficient, j);
+                matrix[i][j] = element;
             }
+            matrix[i][n+1] = "y" + "{" + pointers[i].getCoefficient() + "}";
         }
-        dto.setA(a);
 
-        String[] b = new String[n+1];
-        for(int i=0; i<=n; i++) {
-            b[i] = "y"+i;
-        }
-        dto.setB(b);
-
-
-
-        for (int i = 0; i < a.length; i++) {
-            System.out.print("y"+ i + " = \t");
-            for (int j = 0; j < a[i].length; j++) {
-                System.out.print(a[i][j] + "\t");
+        for (String[] strings : matrix) {
+            for (int c = 0; c <= n + 1; c++) {
+                System.out.print(strings[c] + " ");
             }
             System.out.println();
         }
 
-        return dto;
+        return matrix;
+    }
+
+    public static String h(int coefficientInt, int pow) {
+        boolean powIsEvenNumber = (pow % 2) == 0;
+        coefficientInt = (powIsEvenNumber && coefficientInt < 0) ? (coefficientInt * -1): coefficientInt;
+
+        if(coefficientInt == 0) {
+            return "0";
+        }else if(pow == 0) {
+            return "1";
+        }else if(pow == 1 || pow == -1) {
+            return symMultiply(coefficientInt, pow);
+        } else {
+            return symMultiply((int)Math.pow(coefficientInt, pow), pow) + "^" + pow;
+        }
+    }
+
+    public static String symMultiply(int num, int pow) {
+        if(num == 0) {
+            return "0";
+        }else if(num == -1) {
+            return "-h";
+        }else if(num == 1) {
+            return "h";
+        }else {
+            return num + "h";
+        }
     }
 }
