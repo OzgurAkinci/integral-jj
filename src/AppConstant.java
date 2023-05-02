@@ -39,15 +39,15 @@ public final class AppConstant {
         List<Fraction> coefficients = new ArrayList<>();
 
         StringBuilder polyInt = new StringBuilder();
-        for (int i = 0 ; i <= n; i++) {
+        for (int i = n ; i >= 0; i--) {
             // p(x) = cnx^n + ... + c3x^3 + c2x^2 + c1x + c0
             poly.append("c_").append("{").append(i).append("}").append("x^").append(i);
-            if(i != n) {
+            if(i != 0) {
                 poly.append(" + ");
             }
             // P(x) = (cnx^(n+1) / (n+1)) + .... + ((c3x^4) / 4) + ((c2x^3) / 3) + ((c1x^2) / 2) + (c0x)
             polyInt.append("(").append("(").append("c_").append("{").append(i).append("}").append(")").append("x^").append(i+1).append(")").append("/").append(i+1);
-            if(i != n) {
+            if(i != 0) {
                 polyInt.append(" + ");
             }
 
