@@ -39,6 +39,19 @@ class EvalVisitor implements Visitor {
         //Fraction[] c = GaussElimination.solve(coefficients.getA(), b);
         //System.out.println("c_{0} = " + c[0] + ", c_{1} = " + c[1] + ", c_{2} = " + c[2]);
         */
+
+        System.out.println("========================================================");
+        int[][] matrix = new int[][] {
+                { -1,1,-1,0 },
+                { 0,0,0,0 },
+                { 1,1,1,0 },
+                { 2,2,2,0 }
+        };
+
+        int[][] new_matrix = AppConstant.findEchelonMatrix(matrix);
+        AppConstant.printMatrix(new_matrix);
+
+
         System.out.println("========================================================");
         return  e;
     }

@@ -108,4 +108,64 @@ public final class AppConstant {
             return num + "h";
         }
     }
+
+    /*
+    Bu fonksiyon, bir 2 boyutlu double türündeki matrisi parametre olarak alır ve
+    matrisin üzerinde değişiklik yapar, bu nedenle eşelon matrisi elde etmek için,
+    matrisi önce fonksiyona göndermeniz gerekir. Fonksiyon, eşelon matrisi oluşturmak için
+    Gauss eleme yöntemini kullanır.
+    */
+    public static int[][] findEchelonMatrix(int[][] A) {
+        int rowCount = A.length;
+        int columnCount = A[0].length;
+
+        int row = 0;
+        for (int col = 0; col < columnCount && row < rowCount; col++) {
+            // Birinci adım: anahtar elemanın 0 olmadığı bir satır bulun
+            int pivotRow = row;
+            while (pivotRow < rowCount && A[pivotRow][col] == 0) {
+                pivotRow++;
+            }
+
+            if (pivotRow == rowCount) {
+                // Bu sütundaki tüm elemanlar zaten sıfır
+                continue;
+            }
+
+            // İkinci adım: anahtar elemanı olan satırı bulun ve eşleştirin
+            if (pivotRow != row) {
+                int[] tempRow = A[pivotRow];
+                A[pivotRow] = A[row];
+                A[row] = tempRow;
+            }
+
+            // Üçüncü adım: anahtar elemanı sıfırdan farklı bir sayı yapın
+            int pivot = A[row][col];
+            for (int j = col; j < columnCount; j++) {
+                A[row][j] /= pivot;
+            }
+
+            // Dördüncü adım: anahtar elemanın altındaki tüm elemanlarda sıfır yapın
+            for (int j = row + 1; j < rowCount; j++) {
+                int factor = A[j][col];
+                for (int k = col; k < columnCount; k++) {
+                    A[j][k] -= factor * A[row][k];
+                }
+            }
+
+            // Beşinci adım: bir sonraki anahtar eleman için ilerleyin
+            row++;
+            //printMatrix(A);
+        }
+        return A;
+    }
+
+    public static void printMatrix(int[][] matrix) {
+        for (int[] ints : matrix) {
+            for (int j = 0; j < matrix[0].length; j++) {
+                System.out.print(ints[j] + " ");
+            }
+            System.out.println();
+        }
+    }
 }
