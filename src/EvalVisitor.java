@@ -18,6 +18,7 @@ class EvalVisitor implements Visitor {
         System.out.println("========================================================");
         PointerDTO[] pointers = AppConstant.calcPointers(n+1);
         System.out.println("h = " + Arrays.stream(pointers).toList().stream().map(PointerDTO::gethCoefficient).collect(Collectors.joining(",")));
+        System.out.println("y = " + Arrays.stream(pointers).toList().stream().map(PointerDTO::getyCoefficient).collect(Collectors.joining(",")));
 
         // poly
         System.out.println("========================================================");
@@ -49,6 +50,7 @@ class EvalVisitor implements Visitor {
         };
 
         int[][] new_matrix = AppConstant.findEchelonMatrix(matrix);
+
         AppConstant.printMatrix(new_matrix);
 
 

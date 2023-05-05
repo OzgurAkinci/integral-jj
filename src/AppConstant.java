@@ -22,13 +22,13 @@ public final class AppConstant {
 
         int i=0;
         while (leftCounter < 0) {
-            arr[i] = new PointerDTO(leftCounter, leftCounter == -1 ? "-h" : (leftCounter + "h"));;
+            arr[i] = new PointerDTO(leftCounter, leftCounter == -1 ? "-h" : (leftCounter + "h"), "y{" + leftCounter + "}");
             leftCounter++; i++;
         }
 
         i = n-1;
         while (rightCounter >= 0) {
-            arr[i] = new PointerDTO(rightCounter, rightCounter == 1 ? "h" : (rightCounter == 0 ? "0" : (rightCounter + "h")));;
+            arr[i] = new PointerDTO(rightCounter, rightCounter == 1 ? "h" : (rightCounter == 0 ? "0" : (rightCounter + "h")), "y{" + rightCounter + "}");
             rightCounter--; i--;
         }
         return arr;
@@ -137,14 +137,12 @@ public final class AppConstant {
                 int[] tempRow = A[pivotRow];
                 A[pivotRow] = A[row];
                 A[row] = tempRow;
-                printMatrix(A);
             }
 
             // Üçüncü adım: anahtar elemanı sıfırdan farklı bir sayı yapın
             int pivot = A[row][col];
             for (int j = col; j < columnCount; j++) {
                 A[row][j] /= pivot;
-                printMatrix(A);
             }
 
             // Dördüncü adım: anahtar elemanın altındaki tüm elemanlarda sıfır yapın
@@ -152,13 +150,11 @@ public final class AppConstant {
                 int factor = A[j][col];
                 for (int k = col; k < columnCount; k++) {
                     A[j][k] -= factor * A[row][k];
-                    printMatrix(A);
                 }
             }
 
             // Beşinci adım: bir sonraki anahtar eleman için ilerleyin
             row++;
-            //printMatrix(A);
         }
         return A;
     }
@@ -171,4 +167,25 @@ public final class AppConstant {
             System.out.println();
         }
     }
+
+    public static int[][] matrixConcatenate(int[][] matrix1, int[][] matrix2) {
+        // İki matrisin de boyları eşit olmalıdır.
+        int satirSayisi = matrix1.length;
+        int sutunSayisi = matrix1[0].length;
+        if (satirSayisi != matrix2.length || sutunSayisi != matrix2[0].length) {
+            throw new IllegalArgumentException("Matrislerin boyutları eşleşmiyor");
+        }
+
+        // Yeni bir matris oluşturun ve iki matrisi birleştirin.
+        int[][] birlesikMatris = new int[satirSayisi][sutunSayisi * 2];
+        for (int i = 0; i < satirSayisi; i++) {
+            for (int j = 0; j < sutunSayisi; j++) {
+                birlesikMatris[i][j] = matrix1[i][j];
+                birlesikMatris[i][j + sutunSayisi] = matrix2[i][j];
+            }
+        }
+        return birlesikMatris;
+    }
+
+
 }

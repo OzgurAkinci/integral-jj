@@ -1,11 +1,19 @@
 public class PointerDTO {
     private int coefficient;
     private String hCoefficient;
+    private String yCoefficient;
 
     PointerDTO() {}
+
     PointerDTO(int coefficient, String hCoefficient) {
         this.coefficient = coefficient;
         this.hCoefficient = hCoefficient;
+    }
+
+    PointerDTO(int coefficient, String hCoefficient, String yCoefficient) {
+        this.coefficient = coefficient;
+        this.hCoefficient = hCoefficient;
+        this.yCoefficient = yCoefficient;
     }
 
     public int getCoefficient() {
@@ -24,11 +32,20 @@ public class PointerDTO {
         this.hCoefficient = hCoefficient;
     }
 
+    public String getyCoefficient() {
+        return yCoefficient;
+    }
+
+    public void setyCoefficient(String yCoefficient) {
+        this.yCoefficient = yCoefficient;
+    }
+
     @Override
     public String toString() {
         return "PointerDTO{" +
                 "coefficient=" + coefficient +
                 ", hCoefficient='" + hCoefficient + '\'' +
+                ", yCoefficient='" + yCoefficient + '\'' +
                 '}';
     }
 }
