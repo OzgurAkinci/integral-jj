@@ -115,9 +115,15 @@ public final class AppConstant {
     matrisi önce fonksiyona göndermeniz gerekir. Fonksiyon, eşelon matrisi oluşturmak için
     Gauss eleme yöntemini kullanır.
     */
-    public static int[][] findEchelonMatrix(int[][] A) {
+    public static int[][] findEchelonMatrix(int[][] A, PointerDTO[] pointers) {
         int rowCount = A.length;
         int columnCount = A[0].length;
+
+        String[] yCoefficient = new String[rowCount];
+        for(int z=0; z<rowCount; z++) {
+            yCoefficient[z] = pointers[z].getyCoefficient();
+        }
+
 
         int row = 0;
         for (int col = 0; col < columnCount && row < rowCount; col++) {
@@ -143,6 +149,8 @@ public final class AppConstant {
             int pivot = A[row][col];
             for (int j = col; j < columnCount; j++) {
                 A[row][j] /= pivot;
+
+                yCoefficient[row] = yCoefficient[row] + " / " + pivot;
             }
 
             // Dördüncü adım: anahtar elemanın altındaki tüm elemanlarda sıfır yapın
@@ -150,11 +158,17 @@ public final class AppConstant {
                 int factor = A[j][col];
                 for (int k = col; k < columnCount; k++) {
                     A[j][k] -= factor * A[row][k];
+
+                    yCoefficient[j] = yCoefficient[j] + "-" + "(" + factor + " * " + A[row][k] + ")";
                 }
             }
 
             // Beşinci adım: bir sonraki anahtar eleman için ilerleyin
             row++;
+        }
+
+        for(int b = 0; b < yCoefficient.length; b++) {
+            System.out.println(yCoefficient[b]);
         }
         return A;
     }

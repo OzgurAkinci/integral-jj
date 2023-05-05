@@ -49,7 +49,7 @@ class EvalVisitor implements Visitor {
                 { 2,2,2,1 }
         };
 
-        int[][] new_matrix = AppConstant.findEchelonMatrix(matrix);
+        int[][] new_matrix = AppConstant.findEchelonMatrix(matrix, pointers);
 
         AppConstant.printMatrix(new_matrix);
 
