@@ -137,12 +137,14 @@ public final class AppConstant {
                 int[] tempRow = A[pivotRow];
                 A[pivotRow] = A[row];
                 A[row] = tempRow;
+                printMatrix(A);
             }
 
             // Üçüncü adım: anahtar elemanı sıfırdan farklı bir sayı yapın
             int pivot = A[row][col];
             for (int j = col; j < columnCount; j++) {
                 A[row][j] /= pivot;
+                printMatrix(A);
             }
 
             // Dördüncü adım: anahtar elemanın altındaki tüm elemanlarda sıfır yapın
@@ -150,6 +152,7 @@ public final class AppConstant {
                 int factor = A[j][col];
                 for (int k = col; k < columnCount; k++) {
                     A[j][k] -= factor * A[row][k];
+                    printMatrix(A);
                 }
             }
 

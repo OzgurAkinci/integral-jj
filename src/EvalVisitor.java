@@ -42,10 +42,10 @@ class EvalVisitor implements Visitor {
 
         System.out.println("========================================================");
         int[][] matrix = new int[][] {
-                { -1,1,-1,0 },
-                { 0,0,0,0 },
-                { 1,1,1,0 },
-                { 2,2,2,0 }
+                { -1,1,-1,1 },
+                { 0,0,0,1 },
+                { 1,1,1,1 },
+                { 2,2,2,1 }
         };
 
         int[][] new_matrix = AppConstant.findEchelonMatrix(matrix);
