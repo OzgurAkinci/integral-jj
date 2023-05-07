@@ -1,5 +1,4 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public final class AppConstant {
 
@@ -115,15 +114,9 @@ public final class AppConstant {
     matrisi önce fonksiyona göndermeniz gerekir. Fonksiyon, eşelon matrisi oluşturmak için
     Gauss eleme yöntemini kullanır.
     */
-    public static int[][] findEchelonMatrix(int[][] A, PointerDTO[] pointers) {
+    public static int[][] findEchelonMatrix(int[][] A, String[] B) {
         int rowCount = A.length;
         int columnCount = A[0].length;
-
-        String[] yCoefficient = new String[rowCount];
-        for(int z=0; z<rowCount; z++) {
-            yCoefficient[z] = pointers[z].getyCoefficient();
-        }
-
 
         int row = 0;
         for (int col = 0; col < columnCount && row < rowCount; col++) {
@@ -150,7 +143,6 @@ public final class AppConstant {
             for (int j = col; j < columnCount; j++) {
                 A[row][j] /= pivot;
 
-                yCoefficient[row] = yCoefficient[row] + " / " + pivot;
             }
 
             // Dördüncü adım: anahtar elemanın altındaki tüm elemanlarda sıfır yapın
@@ -158,17 +150,11 @@ public final class AppConstant {
                 int factor = A[j][col];
                 for (int k = col; k < columnCount; k++) {
                     A[j][k] -= factor * A[row][k];
-
-                    yCoefficient[j] = yCoefficient[j] + "-" + "(" + factor + " * " + A[row][k] + ")";
                 }
             }
 
             // Beşinci adım: bir sonraki anahtar eleman için ilerleyin
             row++;
-        }
-
-        for(int b = 0; b < yCoefficient.length; b++) {
-            System.out.println(yCoefficient[b]);
         }
         return A;
     }
@@ -181,6 +167,78 @@ public final class AppConstant {
             System.out.println();
         }
     }
+
+    public static void printDoubleMatrix(double[][] matrix) {
+        for (double[] ints : matrix) {
+            for (int j = 0; j < matrix[0].length; j++) {
+                System.out.print(ints[j] + " ");
+            }
+            System.out.println();
+        }
+    }
+
+
+    public static String[] solveSystemOfEquations(int[][] A) {
+        int m = A.length;
+        int n = A[0].length;
+
+        // sembolik matris B oluşturulur
+        String[] B = new String[n - 1];
+        for (int i = 0; i < n - 1; i++) {
+            B[i] = "x" + (i + 1);
+        }
+
+        // matrisin eşelon hali oluşturulur
+        for (int k = 0; k < Math.min(m, n - 1); k++) {
+            int i_max = k;
+            for (int i = k + 1; i < m; i++) {
+                if (Math.abs(A[i][k]) > Math.abs(A[i_max][k])) {
+                    i_max = i;
+                }
+            }
+
+            if (A[i_max][k] == 0) {
+                continue;
+            }
+
+            // satırlar değiştirilir
+            int[] temp = A[k];
+            A[k] = A[i_max];
+            A[i_max] = temp;
+
+            // satırların çarpılması ve çıkarılması
+            for (int i = k + 1; i < m; i++) {
+                int f = A[i][k] / A[k][k];
+                for (int j = k + 1; j < n; j++) {
+                    A[i][j] -= f * A[k][j];
+                }
+                A[i][k] = 0;
+            }
+        }
+
+        // matrisin üst üçgen şekli elde edilir
+        for (int i = m - 1; i >= 0; i--) {
+            for (int j = i - 1; j >= 0; j--) {
+                int f = A[j][i] / A[i][i];
+                for (int k = i; k < n; k++) {
+                    A[j][k] -= f * A[i][k];
+                }
+            }
+        }
+
+        // sonuçlar sembolik matris B'nin elemanları olarak döndürülür
+        for (int i = 0; i < n - 1; i++) {
+            B[i] += " = ";
+            if (A[i][n - 1] % A[i][i] != 0) {
+                B[i] += A[i][n - 1] + "/" + A[i][i];
+            } else {
+                B[i] += A[i][n - 1] / A[i][i];
+            }
+        }
+
+        return B;
+    }
+
 
     public static int[][] matrixConcatenate(int[][] matrix1, int[][] matrix2) {
         // İki matrisin de boyları eşit olmalıdır.

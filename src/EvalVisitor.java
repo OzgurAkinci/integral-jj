@@ -48,13 +48,14 @@ class EvalVisitor implements Visitor {
                 { 1,1,1,1 },
                 { 2,2,2,1 }
         };
+        String[] B = {"a", "b", "c", "d"};
 
-        int[][] new_matrix = AppConstant.findEchelonMatrix(matrix, pointers);
+        int[][] new_matrix = AppConstant.findEchelonMatrix(matrix, B);
 
-        AppConstant.printMatrix(new_matrix);
-
+        AppConstant.printMatrix(matrix);
 
         System.out.println("========================================================");
+
         return  e;
     }
 
