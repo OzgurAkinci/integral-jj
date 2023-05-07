@@ -31,31 +31,24 @@ class EvalVisitor implements Visitor {
         System.out.println("========================================================");
         String[][] initMatrix = AppConstant.initMatrix(pointers, n);
 
-        /*
-        // coefficients
-        System.out.println("========================================================");
-        GaussEliminationInputDTO coefficients = AppConstant.createCoefficientAsGaussEliminationInputDTO(arr, n);
-
-        //Fraction[] b = {Fraction.valueOf(1.0), Fraction.valueOf(1.0), Fraction.valueOf(1.0) , Fraction.valueOf(1.0)};
-        //Fraction[] c = GaussElimination.solve(coefficients.getA(), b);
-        //System.out.println("c_{0} = " + c[0] + ", c_{1} = " + c[1] + ", c_{2} = " + c[2]);
-        */
-
         System.out.println("========================================================");
         int[][] matrix = new int[][] {
-                { -1,1,-1,1 },
-                { 0,0,0,1 },
-                { 1,1,1,1 },
-                { 2,2,2,1 }
+                { 1,2,0 },
+                { 2,7,-6 },
+                { 0,5,4 }
         };
-        String[] B = {"a", "b", "c", "d"};
+        String[] B = {"a", "b", "c"};
 
-        int[][] new_matrix = AppConstant.findEchelonMatrix(matrix, B);
+        MatrixDto matrixDto = new MatrixDto(matrix, B);
 
-        AppConstant.printMatrix(matrix);
+        MatrixDto echelonMatrix = AppConstant.findEchelonMatrix(matrixDto);
 
+
+        System.out.println("=========================Matrix===============================");
+        AppConstant.printMatrix(echelonMatrix.getMatrix());
+        System.out.println("=========================Echelon Matrix===============================");
+        AppConstant.printMatrix(echelonMatrix.getEchelonMatrix());
         System.out.println("========================================================");
-
         return  e;
     }
 

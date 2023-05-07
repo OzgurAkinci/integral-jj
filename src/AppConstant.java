@@ -114,17 +114,22 @@ public final class AppConstant {
     matrisi önce fonksiyona göndermeniz gerekir. Fonksiyon, eşelon matrisi oluşturmak için
     Gauss eleme yöntemini kullanır.
     */
-    public static int[][] findEchelonMatrix(int[][] A, String[] B) {
+    public static MatrixDto findEchelonMatrix(MatrixDto matrixDto) {
+        int[][] A = matrixDto.getMatrix();
+        String [] B = matrixDto.getSolutionMatrixIn();
         int rowCount = A.length;
         int columnCount = A[0].length;
 
         int row = 0;
         for (int col = 0; col < columnCount && row < rowCount; col++) {
+
             // Birinci adım: anahtar elemanın 0 olmadığı bir satır bulun
             int pivotRow = row;
             while (pivotRow < rowCount && A[pivotRow][col] == 0) {
                 pivotRow++;
             }
+            System.out.println("pivotRow:" + pivotRow);
+            printMatrix(A);
 
             if (pivotRow == rowCount) {
                 // Bu sütundaki tüm elemanlar zaten sıfır
@@ -142,8 +147,12 @@ public final class AppConstant {
             int pivot = A[row][col];
             for (int j = col; j < columnCount; j++) {
                 A[row][j] /= pivot;
-
             }
+
+            B[row] = B[row] + "/" + pivot;
+
+            //System.out.println(result);
+            System.out.println("*****************************");
 
             // Dördüncü adım: anahtar elemanın altındaki tüm elemanlarda sıfır yapın
             for (int j = row + 1; j < rowCount; j++) {
@@ -151,12 +160,18 @@ public final class AppConstant {
                 for (int k = col; k < columnCount; k++) {
                     A[j][k] -= factor * A[row][k];
                 }
+                B[j] = B[j] + "-" +  factor + "*" + B[row];
             }
+            printMatrix(A);
 
             // Beşinci adım: bir sonraki anahtar eleman için ilerleyin
             row++;
         }
-        return A;
+        //System.out.println("*****************************");
+        //System.out.println(Arrays.toString(B));
+
+        matrixDto.setEchelonMatrix(A);
+        return matrixDto;
     }
 
     public static void printMatrix(int[][] matrix) {
@@ -167,78 +182,6 @@ public final class AppConstant {
             System.out.println();
         }
     }
-
-    public static void printDoubleMatrix(double[][] matrix) {
-        for (double[] ints : matrix) {
-            for (int j = 0; j < matrix[0].length; j++) {
-                System.out.print(ints[j] + " ");
-            }
-            System.out.println();
-        }
-    }
-
-
-    public static String[] solveSystemOfEquations(int[][] A) {
-        int m = A.length;
-        int n = A[0].length;
-
-        // sembolik matris B oluşturulur
-        String[] B = new String[n - 1];
-        for (int i = 0; i < n - 1; i++) {
-            B[i] = "x" + (i + 1);
-        }
-
-        // matrisin eşelon hali oluşturulur
-        for (int k = 0; k < Math.min(m, n - 1); k++) {
-            int i_max = k;
-            for (int i = k + 1; i < m; i++) {
-                if (Math.abs(A[i][k]) > Math.abs(A[i_max][k])) {
-                    i_max = i;
-                }
-            }
-
-            if (A[i_max][k] == 0) {
-                continue;
-            }
-
-            // satırlar değiştirilir
-            int[] temp = A[k];
-            A[k] = A[i_max];
-            A[i_max] = temp;
-
-            // satırların çarpılması ve çıkarılması
-            for (int i = k + 1; i < m; i++) {
-                int f = A[i][k] / A[k][k];
-                for (int j = k + 1; j < n; j++) {
-                    A[i][j] -= f * A[k][j];
-                }
-                A[i][k] = 0;
-            }
-        }
-
-        // matrisin üst üçgen şekli elde edilir
-        for (int i = m - 1; i >= 0; i--) {
-            for (int j = i - 1; j >= 0; j--) {
-                int f = A[j][i] / A[i][i];
-                for (int k = i; k < n; k++) {
-                    A[j][k] -= f * A[i][k];
-                }
-            }
-        }
-
-        // sonuçlar sembolik matris B'nin elemanları olarak döndürülür
-        for (int i = 0; i < n - 1; i++) {
-            B[i] += " = ";
-            if (A[i][n - 1] % A[i][i] != 0) {
-                B[i] += A[i][n - 1] + "/" + A[i][i];
-            } else {
-                B[i] += A[i][n - 1] / A[i][i];
-            }
-        }
-
-        return B;
-    }
-
 
     public static int[][] matrixConcatenate(int[][] matrix1, int[][] matrix2) {
         // İki matrisin de boyları eşit olmalıdır.
