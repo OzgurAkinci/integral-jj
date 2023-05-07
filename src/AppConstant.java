@@ -114,9 +114,9 @@ public final class AppConstant {
     matrisi önce fonksiyona göndermeniz gerekir. Fonksiyon, eşelon matrisi oluşturmak için
     Gauss eleme yöntemini kullanır.
     */
-    public static MatrixDto findEchelonMatrix(MatrixDto matrixDto) {
-        int[][] A = matrixDto.getMatrix();
-        String [] B = matrixDto.getSolutionMatrixIn();
+    public static MatrixDto findEchelonMatrix(int[][] A, String[] B) {
+        MatrixDto matrixDto = new MatrixDto();
+
         int rowCount = A.length;
         int columnCount = A[0].length;
 
@@ -151,7 +151,6 @@ public final class AppConstant {
 
             B[row] = B[row] + "/" + pivot;
 
-            //System.out.println(result);
             System.out.println("*****************************");
 
             // Dördüncü adım: anahtar elemanın altındaki tüm elemanlarda sıfır yapın
@@ -167,10 +166,9 @@ public final class AppConstant {
             // Beşinci adım: bir sonraki anahtar eleman için ilerleyin
             row++;
         }
-        //System.out.println("*****************************");
-        //System.out.println(Arrays.toString(B));
 
         matrixDto.setEchelonMatrix(A);
+        matrixDto.setSolutionMatrix(B);
         return matrixDto;
     }
 
@@ -183,24 +181,12 @@ public final class AppConstant {
         }
     }
 
-    public static int[][] matrixConcatenate(int[][] matrix1, int[][] matrix2) {
-        // İki matrisin de boyları eşit olmalıdır.
-        int satirSayisi = matrix1.length;
-        int sutunSayisi = matrix1[0].length;
-        if (satirSayisi != matrix2.length || sutunSayisi != matrix2[0].length) {
-            throw new IllegalArgumentException("Matrislerin boyutları eşleşmiyor");
-        }
-
-        // Yeni bir matris oluşturun ve iki matrisi birleştirin.
-        int[][] birlesikMatris = new int[satirSayisi][sutunSayisi * 2];
-        for (int i = 0; i < satirSayisi; i++) {
-            for (int j = 0; j < sutunSayisi; j++) {
-                birlesikMatris[i][j] = matrix1[i][j];
-                birlesikMatris[i][j + sutunSayisi] = matrix2[i][j];
+    public static void printStrMatrix(String[][] matrix) {
+        for (String[] ints : matrix) {
+            for (int j = 0; j < matrix[0].length; j++) {
+                System.out.print(ints[j] + " ");
             }
+            System.out.println();
         }
-        return birlesikMatris;
     }
-
-
 }

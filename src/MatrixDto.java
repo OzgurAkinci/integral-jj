@@ -1,21 +1,13 @@
 public class MatrixDto {
-    private int[][] matrix;
     private int[][] echelonMatrix;
-    private String[] solutionMatrixIn;
-    private String[] solutionMatrixOut;
+    private String[] solutionMatrix;
     private StepDto steps;
 
-    public MatrixDto(int[][] matrix, String [] solutionMatrixIn) {
-        this.matrix = matrix;
-        this.solutionMatrixIn = solutionMatrixIn;
-    }
+    public MatrixDto() {}
 
-    public int[][] getMatrix() {
-        return matrix;
-    }
-
-    public void setMatrix(int[][] matrix) {
-        this.matrix = matrix;
+    public MatrixDto(int[][] echelonMatrix, String [] solutionMatrix) {
+        this.echelonMatrix = echelonMatrix;
+        this.solutionMatrix = solutionMatrix;
     }
 
     public int[][] getEchelonMatrix() {
@@ -26,20 +18,12 @@ public class MatrixDto {
         this.echelonMatrix = echelonMatrix;
     }
 
-    public String[] getSolutionMatrixIn() {
-        return solutionMatrixIn;
+    public String[] getSolutionMatrix() {
+        return solutionMatrix;
     }
 
-    public void setSolutionMatrixIn(String[] solutionMatrixIn) {
-        this.solutionMatrixIn = solutionMatrixIn;
-    }
-
-    public String[] getSolutionMatrixOut() {
-        return solutionMatrixOut;
-    }
-
-    public void setSolutionMatrixOut(String[] solutionMatrixOut) {
-        this.solutionMatrixOut = solutionMatrixOut;
+    public void setSolutionMatrix(String[] solutionMatrix) {
+        this.solutionMatrix = solutionMatrix;
     }
 
     public StepDto getSteps() {

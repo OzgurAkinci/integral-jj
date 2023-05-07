@@ -30,24 +30,22 @@ class EvalVisitor implements Visitor {
         // h functions
         System.out.println("========================================================");
         String[][] initMatrix = AppConstant.initMatrix(pointers, n);
-
         System.out.println("========================================================");
-        int[][] matrix = new int[][] {
+        int[][] A = new int[][] {
                 { 1,2,0 },
                 { 2,7,-6 },
                 { 0,5,4 }
         };
         String[] B = {"a", "b", "c"};
 
-        MatrixDto matrixDto = new MatrixDto(matrix, B);
+        MatrixDto echelonMatrix = AppConstant.findEchelonMatrix(A, B);
 
-        MatrixDto echelonMatrix = AppConstant.findEchelonMatrix(matrixDto);
-
-
-        System.out.println("=========================Matrix===============================");
-        AppConstant.printMatrix(echelonMatrix.getMatrix());
-        System.out.println("=========================Echelon Matrix===============================");
+        System.out.println("========================= Matrix ========================================");
+        AppConstant.printMatrix(A);
+        System.out.println("========================= Echelon Matrix ================================");
         AppConstant.printMatrix(echelonMatrix.getEchelonMatrix());
+        System.out.println("========================= Solution Matrix ===============================");
+        System.out.println(Arrays.toString(echelonMatrix.getSolutionMatrix()));
         System.out.println("========================================================");
         return  e;
     }
