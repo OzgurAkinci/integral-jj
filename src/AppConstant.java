@@ -141,8 +141,12 @@ public final class AppConstant {
         int rowCount = A.length;
         int columnCount = A[0].length;
 
+        List<StepDto> stepDtoList = new ArrayList<>();
+
+
         int row = 0;
         for (int col = 0; col < columnCount && row < rowCount; col++) {
+            StepDto stepDto = new StepDto();
 
             // Birinci adım: anahtar elemanın 0 olmadığı bir satır bulun
             int pivotRow = row;
@@ -150,7 +154,10 @@ public final class AppConstant {
                 pivotRow++;
             }
             //System.out.println("pivotRow:" + pivotRow);
+            stepDto.setPivotRow(pivotRow);
+
             //printMatrix(A);
+            stepDto.setMatrix(A);
 
             if (pivotRow == rowCount) {
                 // Bu sütundaki tüm elemanlar zaten sıfır
@@ -183,11 +190,15 @@ public final class AppConstant {
                 B[j] = B[j] + "-" +  factor + "*" + B[row];
             }
             //printMatrix(A);
+            stepDto.setMatrix(A);
 
             // Beşinci adım: bir sonraki anahtar eleman için ilerleyin
             row++;
+
+            stepDtoList.add(stepDto);
         }
 
+        matrixDto.setSteps(stepDtoList);
         matrixDto.setEchelonMatrix(A);
         matrixDto.setSolutionMatrix(B);
         return matrixDto;

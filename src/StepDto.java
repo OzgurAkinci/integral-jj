@@ -3,6 +3,8 @@ public class StepDto {
     private String equation;
     private int pivotRow;
 
+    public StepDto() {}
+
     public int[][] getMatrix() {
         return matrix;
     }
@@ -25,5 +27,13 @@ public class StepDto {
 
     public void setPivotRow(int pivotRow) {
         this.pivotRow = pivotRow;
+    }
+
+    @Override
+    public String toString() {
+        return "StepDto{" +
+                "pivotRow=" + pivotRow +
+                ", equation='" + equation + '\'' +
+                '}';
     }
 }

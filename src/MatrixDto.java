@@ -1,7 +1,9 @@
+import java.util.List;
+
 public class MatrixDto {
     private int[][] echelonMatrix;
     private String[] solutionMatrix;
-    private StepDto steps;
+    private List<StepDto> steps;
 
     public MatrixDto() {}
 
@@ -26,11 +28,11 @@ public class MatrixDto {
         this.solutionMatrix = solutionMatrix;
     }
 
-    public StepDto getSteps() {
+    public List<StepDto> getSteps() {
         return steps;
     }
 
-    public void setSteps(StepDto steps) {
+    public void setSteps(List<StepDto> steps) {
         this.steps = steps;
     }
 }
