@@ -36,9 +36,7 @@ class EvalVisitor implements Visitor {
         int[][] initMatrix = AppConstant.initMatrix(pointers, n);
 
         String[] B = new String[pointers.length];
-        for(int i=0; i<pointers.length; i++) {
-            B[i] = pointers[i].getyCoefficient();
-        }
+        for(int i=0; i<pointers.length; i++) {B[i] = pointers[i].getyCoefficient();}
         AppConstant.printMatrix(initMatrix);
 
         System.out.println("========================= Echelon Matrix ================================");

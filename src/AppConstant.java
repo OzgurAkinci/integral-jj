@@ -62,11 +62,13 @@ public final class AppConstant {
         String[][] matrix = new String[n+1][n+2];
 
         for(int i=0; i<pointers.length; i++) {
+            int tempN = n;
             for(int j=0; j<=n; j++) {
                 PointerDTO pointer = pointers[i];
                 int coefficient = pointer.getCoefficient();
-                String element = (coefficient == 0 && j == 0) ? ("c{" + pointers[i].getCoefficient() + "}") : h(coefficient, j);
+                String element = (coefficient == 0 && j == 0) ? ("c{" + pointers[i].getCoefficient() + "}") : h(coefficient, tempN);
                 matrix[i][j] = element;
+                tempN--;
             }
             matrix[i][n+1] = "y" + "{" + pointers[i].getCoefficient() + "}";
         }
@@ -77,10 +79,12 @@ public final class AppConstant {
         int[][] arr  = new int[n+1][n+1];
         for(int i=0; i<pointers.length; i++) {
             PointerDTO pointer = pointers[i];
-            for(int j=n; j>0; j--) {
+            int tempN = n;
+            for(int j=0; j<=n; j++) {
                 int coefficient = pointer.getCoefficient();
-                int v = (int) Math.pow(coefficient, j);
+                int v = (int) Math.pow(coefficient, tempN);
                 arr[i][j] = v;
+                tempN--;
             }
         }
         return arr;
