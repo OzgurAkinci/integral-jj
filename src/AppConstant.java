@@ -40,13 +40,25 @@ public final class AppConstant {
         StringBuilder polyInt = new StringBuilder();
         for (int i = n ; i >= 0; i--) {
             // p(x) = cnx^n + ... + c3x^3 + c2x^2 + c1x + c0
-            poly.append("c_").append("{").append(i).append("}").append("x^").append(i);
+            poly.append("c_").append("{").append(i).append("}");
             if(i != 0) {
+                if(i==1) {
+                    poly.append("x");
+                }else {
+                    poly.append("x^").append(i);
+                }
                 poly.append(" + ");
             }
             // P(x) = (cnx^(n+1) / (n+1)) + .... + ((c3x^4) / 4) + ((c2x^3) / 3) + ((c1x^2) / 2) + (c0x)
-            polyInt.append("(").append("(").append("c_").append("{").append(i).append("}").append(")").append("x^").append(i+1).append(")").append("/").append(i+1);
+            polyInt.append("(").append("(").append("c_").append("{").append(i).append("}").append(")");
+            if( i == 0) {
+                polyInt.append("x");
+            }else {
+                polyInt.append("x^").append(i+1);
+            }
+            polyInt.append(")");
             if(i != 0) {
+                polyInt.append("/").append(i+1);
                 polyInt.append(" + ");
             }
 
