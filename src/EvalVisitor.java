@@ -34,7 +34,6 @@ class EvalVisitor implements Visitor {
 
         System.out.println("========================= Init Matrix ===================================");
         int[][] initMatrix = AppConstant.initMatrix(pointers, n);
-
         String[] B = new String[pointers.length];
         for(int i=0; i<pointers.length; i++) {B[i] = pointers[i].getyCoefficient();}
         AppConstant.printMatrix(initMatrix);
@@ -42,8 +41,19 @@ class EvalVisitor implements Visitor {
         System.out.println("========================= Echelon Matrix ================================");
         MatrixDto echelonMatrix = AppConstant.findEchelonMatrix(initMatrix, B);
         AppConstant.printMatrix(echelonMatrix.getEchelonMatrix());
+
+        System.out.println("========================= Steps ================================");
+        if(echelonMatrix.getSteps() != null){
+            for(int i=0; i < echelonMatrix.getSteps().getMatrix().length; i++) {
+                AppConstant.printMatrix(echelonMatrix.getSteps().getMatrix());
+            }
+        }else {
+            System.out.println("Steps is null");
+        }
+
         System.out.println("========================= Solution Matrix ===============================");
         System.out.println(Arrays.toString(echelonMatrix.getSolutionMatrix()));
+
         System.out.println("========================================================");
         return  e;
     }
