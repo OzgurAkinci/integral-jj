@@ -58,7 +58,7 @@ public final class AppConstant {
     }
 
 
-    public static String[][] initMatrix (PointerDTO[] pointers, int n) {
+    public static String[][] initSymbolicMatrix (PointerDTO[] pointers, int n) {
         String[][] matrix = new String[n+1][n+2];
 
         for(int i=0; i<pointers.length; i++) {
@@ -70,15 +70,20 @@ public final class AppConstant {
             }
             matrix[i][n+1] = "y" + "{" + pointers[i].getCoefficient() + "}";
         }
-
-        for (String[] strings : matrix) {
-            for (int c = 0; c <= n + 1; c++) {
-                System.out.print(strings[c] + " ");
-            }
-            System.out.println();
-        }
-
         return matrix;
+    }
+
+    public static int[][] initMatrix (PointerDTO[] pointers, int n) {
+        int[][] arr  = new int[n+1][n+1];
+        for(int i=0; i<pointers.length; i++) {
+            PointerDTO pointer = pointers[i];
+            for(int j=n; j>0; j--) {
+                int coefficient = pointer.getCoefficient();
+                int v = (int) Math.pow(coefficient, j);
+                arr[i][j] = v;
+            }
+        }
+        return arr;
     }
 
     public static String h(int coefficientInt, int pow) {
@@ -128,8 +133,8 @@ public final class AppConstant {
             while (pivotRow < rowCount && A[pivotRow][col] == 0) {
                 pivotRow++;
             }
-            System.out.println("pivotRow:" + pivotRow);
-            printMatrix(A);
+            //System.out.println("pivotRow:" + pivotRow);
+            //printMatrix(A);
 
             if (pivotRow == rowCount) {
                 // Bu sütundaki tüm elemanlar zaten sıfır
@@ -151,7 +156,7 @@ public final class AppConstant {
 
             B[row] = B[row] + "/" + pivot;
 
-            System.out.println("*****************************");
+            //System.out.println("*****************************");
 
             // Dördüncü adım: anahtar elemanın altındaki tüm elemanlarda sıfır yapın
             for (int j = row + 1; j < rowCount; j++) {
@@ -161,7 +166,7 @@ public final class AppConstant {
                 }
                 B[j] = B[j] + "-" +  factor + "*" + B[row];
             }
-            printMatrix(A);
+            //printMatrix(A);
 
             // Beşinci adım: bir sonraki anahtar eleman için ilerleyin
             row++;

@@ -28,21 +28,21 @@ class EvalVisitor implements Visitor {
 
 
         // h functions
-        System.out.println("========================================================");
-        String[][] initMatrix = AppConstant.initMatrix(pointers, n);
-        System.out.println("========================================================");
-        int[][] A = new int[][] {
-                { 1,2,0 },
-                { 2,7,-6 },
-                { 0,5,4 }
-        };
-        String[] B = {"a", "b", "c"};
+        System.out.println("========================= Symbolic Init Matrix ==========================");
+        String[][] initSymbolicMatrix = AppConstant.initSymbolicMatrix(pointers, n);
+        AppConstant.printStrMatrix(initSymbolicMatrix);
 
-        MatrixDto echelonMatrix = AppConstant.findEchelonMatrix(A, B);
+        System.out.println("========================= Init Matrix ===================================");
+        int[][] initMatrix = AppConstant.initMatrix(pointers, n);
 
-        System.out.println("========================= Matrix ========================================");
-        AppConstant.printMatrix(A);
+        String[] B = new String[pointers.length];
+        for(int i=0; i<pointers.length; i++) {
+            B[i] = pointers[i].getyCoefficient();
+        }
+        AppConstant.printMatrix(initMatrix);
+
         System.out.println("========================= Echelon Matrix ================================");
+        MatrixDto echelonMatrix = AppConstant.findEchelonMatrix(initMatrix, B);
         AppConstant.printMatrix(echelonMatrix.getEchelonMatrix());
         System.out.println("========================= Solution Matrix ===============================");
         System.out.println(Arrays.toString(echelonMatrix.getSolutionMatrix()));
