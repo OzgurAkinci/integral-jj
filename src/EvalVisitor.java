@@ -47,7 +47,6 @@ class EvalVisitor implements Visitor {
         if(echelonMatrix.getSteps() != null){
             for(int i=0; i < echelonMatrix.getSteps().size(); i++) {
                 System.out.println("PivotRow: " + echelonMatrix.getSteps().get(i).getPivotRow());
-                System.out.println("Equation: " + echelonMatrix.getSteps().get(i).getEquation());
                 AppConstant.printMatrix(echelonMatrix.getSteps().get(i).getMatrix());
                 System.out.println("####################################");
             }
