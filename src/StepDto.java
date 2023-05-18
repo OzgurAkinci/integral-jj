@@ -10,7 +10,7 @@ public class StepDto {
     }
 
     public void setMatrix(int[][] matrix) {
-        this.matrix = matrix;
+        this.matrix = matrix.clone();
     }
 
     public String getEquation() {

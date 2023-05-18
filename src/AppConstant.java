@@ -138,6 +138,9 @@ public final class AppConstant {
     public static MatrixDto findEchelonMatrix(int[][] A, String[] B) {
         MatrixDto matrixDto = new MatrixDto();
 
+        int[][] initMatrix = Arrays.stream(A).map(int[]::clone).toArray(int[][]::new);
+        matrixDto.setInitMatrix(initMatrix);
+
         int rowCount = A.length;
         int columnCount = A[0].length;
 

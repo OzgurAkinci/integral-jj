@@ -1,15 +1,25 @@
 import java.util.List;
 
 public class MatrixDto {
+    private int[][] initMatrix;
     private int[][] echelonMatrix;
     private String[] solutionMatrix;
     private List<StepDto> steps;
 
     public MatrixDto() {}
 
-    public MatrixDto(int[][] echelonMatrix, String [] solutionMatrix) {
+    public MatrixDto(int[][] initMatrix, int[][] echelonMatrix, String [] solutionMatrix) {
+        this.initMatrix = initMatrix;
         this.echelonMatrix = echelonMatrix;
         this.solutionMatrix = solutionMatrix;
+    }
+
+    public int[][] getInitMatrix() {
+        return initMatrix;
+    }
+
+    public void setInitMatrix(int[][] initMatrix) {
+        this.initMatrix = initMatrix.clone();
     }
 
     public int[][] getEchelonMatrix() {
