@@ -12,6 +12,7 @@ class EvalVisitor implements Visitor {
         // input
         System.out.println("========================= input(n) ======================================");
         n = ((Num) e.exp).number;
+
         System.out.println("n = " + n);
 
         // pointers
@@ -42,7 +43,7 @@ class EvalVisitor implements Visitor {
         System.out.println("========================= Echelon Matrix ================================");
         AppConstant.printMatrix(echelonMatrix.getEchelonMatrix());
 
-
+        /*
         System.out.println("========================= Steps ================================");
         if(echelonMatrix.getSteps() != null){
             for(int i=0; i < echelonMatrix.getSteps().size(); i++) {
@@ -53,6 +54,7 @@ class EvalVisitor implements Visitor {
         }else {
             System.out.println("Steps is null");
         }
+         */
 
         System.out.println("========================= Solution Matrix ===============================");
         System.out.println(Arrays.toString(echelonMatrix.getSolutionMatrix()));
